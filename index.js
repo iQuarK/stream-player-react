@@ -49,7 +49,6 @@ app.get("/listen/:filename", (req, res) => {
     myReadStream.pipe(res);
 });
 
-http.listen(4000, function() {
-    console.log("listening on *:4000");
+http.listen(config.server.port, function() {
+    console.log(`listening on ${config.server.host}:${config.server.port}`);
 });
-console.log("listening on http://127.0.0.1:4000");
