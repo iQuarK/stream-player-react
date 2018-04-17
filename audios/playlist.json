@@ -3,13 +3,13 @@
     "list": [
         {
             "type": "song",
-            "name": "S.O.B.",
+            "title": "S.O.B.",
             "author": "Nathaniel Rateliff and the Night Sweats",
             "filename": "sob.mp3"
         },
         {
             "type": "song",
-            "name": "Sunshine, lollipops and rainbows",
+            "title": "Sunshine, lollipops and rainbows",
             "author": "Lesley Gore",
             "filename": "shunlora.mp3"
         }

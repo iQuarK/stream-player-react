@@ -1,0 +1,20 @@
+@font-face {
+    font-family: eightbit-thin;
+    src: url(../../fonts/DisposableDroidBB.otf);
+}
+
+.playlist {
+    font-family: eightbit-thin, Verdana, Geneva, Tahoma, sans-serif;
+    border: thick solid #555;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.playlist-item {
+    text-align: left;
+    padding: 3px;
+}
+
+.playlist-item.active {
+    background-color: #AAAAAA;
+}

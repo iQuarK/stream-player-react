@@ -3,20 +3,17 @@
     src: url(../../fonts/SHPinscher-Regular.otf);
 }
 @font-face {
-    font-family: eightbit-thin;
-    src: url(../../fonts/thin_pixel-7.ttf);
-}
-@font-face {
     font-family: audio;
     src: url(../../fonts/ll_record.ttf);
 }
 
-
+.container {
+    max-width: 500px;
+    margin: 0 auto;
+}
 .player {
     font-family: eightbit, 'Courier New', Courier, monospace;
     background-color: #555555;
-    max-width: 500px;
-    margin: 0 auto;
     color: white;
 }
 
