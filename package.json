@@ -1,0 +1,37 @@
+{
+  "name": "stream-player-react",
+  "version": "1.0.0",
+  "description": "MP3 streaming server with a player in React",
+  "main": "index.js",
+  "scripts": {
+    "start-server": "nodemon --inspect ./index.js",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iQuarK/stream-player-react.git"
+  },
+  "keywords": [
+    "streaming",
+    "mp3",
+    "react",
+    "aws"
+  ],
+  "author": "Luis Sanchez",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/iQuarK/stream-player-react/issues"
+  },
+  "homepage": "",
+  "dependencies": {
+    "express": "^4.16.3",
+    "nodemon": "^1.17.3",
+    "nvm": "^0.0.4",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-scripts": "1.1.4"
+  }
+}

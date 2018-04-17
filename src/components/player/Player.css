@@ -1,0 +1,7 @@
+@font-face {
+    font-family: eightbit;
+    src: url(../../fonts/SHPinscher-Regular.otf);
+}
+.player {
+    font-family: eightbit, 'Courier New', Courier, monospace;
+}
