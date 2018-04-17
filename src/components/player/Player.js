@@ -6,15 +6,45 @@ import "./Player.css";
 
 class Player extends Component {
     state = {
-        playing: false
+        playing: false,
+        song: null,
+        barWidth: 0
     };
 
-    onSelectSong = item => console.log("TODO, call server to play song", item);
+    onSelectSong = item => {
+        if (this.state.song) {
+            this.state.song.player.pause();
+            this.state.song.player.src = "";
+            this.state.song.player.load();
+        }
 
-    togglePlay = () => this.setState({ playing: !this.state.playing });
+        let song = {
+            ...item,
+            player: new Audio(`http://localhost:4000/listen/${item.filename}`)
+        };
+
+        this.setState({ playing: true, song }, () => {
+            this.state.song.player.play();
+            this.state.song.player.ontimeupdate = this.updateBar;
+        });
+    };
+
+    updateBar = data => this.setState({ barWidth: data.path[0].currentTime });
+
+    togglePlay = () => {
+        const { playing, song } = this.state;
+        if (song) {
+            if (playing) {
+                song.player.pause();
+            } else {
+                song.player.play();
+            }
+            this.setState({ playing: !playing });
+        }
+    };
 
     render() {
-        const { playing } = this.state;
+        const { playing, song, barWidth } = this.state;
 
         return (
             <div className="container">
@@ -29,11 +59,16 @@ class Player extends Component {
                         />
                         <div className="g-col">
                             <span className="playing-title">Playing:</span>
-                            <div className="song-title">title!</div>
+                            <div className="song-title">
+                                {song ? `${song.title} - ${song.author}` : ""}
+                            </div>
                         </div>
                     </div>
                     <div className="progress-bar">
-                        <div className="bar" />
+                        <div
+                            className="bar"
+                            style={{ width: `${barWidth}%` }}
+                        />
                     </div>
                 </div>
                 <Playlist onSelectSong={this.onSelectSong} />
