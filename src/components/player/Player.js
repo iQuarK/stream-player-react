@@ -1,9 +1,17 @@
 import React, { Component } from "react";
 import classnames from "classnames";
+import io from "socket.io-client";
 import Playlist from "../playlist/Playlist";
+import Feed from "../feed/Feed";
 import "./Player.css";
 
 class Player extends Component {
+    constructor() {
+        super();
+
+        this.socket = io("http://127.0.0.1:5000");
+    }
+
     state = {
         playing: false,
         song: null,
@@ -27,6 +35,11 @@ class Player extends Component {
             let { song } = this.state;
             song.player.play();
             song.player.ontimeupdate = this.updateBar;
+            // emit song to be broadcasted into the feed
+            this.socket.emit("feed", {
+                id: this.socket.id,
+                song: item
+            });
         });
     };
 
@@ -79,6 +92,7 @@ class Player extends Component {
                     </div>
                 </div>
                 <Playlist onSelectSong={this.onSelectSong} />
+                <Feed socket={this.socket} />
             </div>
         );
     }

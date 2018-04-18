@@ -3,19 +3,20 @@
     src: url(../../fonts/DisposableDroidBB.otf);
 }
 
-.playlist {
+.feed {
     font-family: eightbit-thin, Verdana, Geneva, Tahoma, sans-serif;
     border: thick solid #555;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
-.playlist-item {
+.feed-title {
+    font-size: 20;
+    font-weight: bold;
+    text-align: left;
+}
+
+.feed-item {
     text-align: left;
     padding: 3px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.playlist-item.active {
-    background-color: #AAAAAA;
 }

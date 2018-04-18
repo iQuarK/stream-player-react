@@ -5,7 +5,7 @@ import { fetchPlaylist } from "../../actions/playlist";
 import classnames from "classnames";
 import "./Playlist.css";
 
-class Player extends Component {
+class Playlist extends Component {
     static propTypes = {
         onSelectSong: PropTypes.func,
         fetchPlaylist: PropTypes.func,
@@ -41,18 +41,19 @@ class Player extends Component {
             <div className="playlist">
                 {playlist.fetching
                     ? "Fetching playlist..."
-                    : playlist.list.length &&
-                      playlist.list.map(song => (
-                          <div
-                              className={classnames("playlist-item", {
-                                  active: song.title === selectedSong
-                              })}
-                              onClick={this.onSelectedSong.bind(this, song)}
-                              key={song.title}
-                          >
-                              {song.title} - {song.author}
-                          </div>
-                      ))}
+                    : playlist.list.length
+                        ? playlist.list.map(song => (
+                              <div
+                                  className={classnames("playlist-item", {
+                                      active: song.title === selectedSong
+                                  })}
+                                  onClick={this.onSelectedSong.bind(this, song)}
+                                  key={song.title}
+                              >
+                                  {song.title} - {song.author}
+                              </div>
+                          ))
+                        : "No songs"}
             </div>
         );
     }
@@ -66,4 +67,4 @@ const mapDispatchToProps = dispatch => ({
     }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Player);
+export default connect(mapStateToProps, mapDispatchToProps)(Playlist);
