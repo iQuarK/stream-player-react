@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
 import classnames from "classnames";
 import Playlist from "../playlist/Playlist";
 import "./Player.css";
@@ -13,19 +12,21 @@ class Player extends Component {
 
     onSelectSong = item => {
         if (this.state.song) {
-            this.state.song.player.pause();
-            this.state.song.player.src = "";
-            this.state.song.player.load();
+            let { song } = this.state;
+            song.player.pause();
+            song.player.src = "";
+            song.player.load();
         }
 
         let song = {
             ...item,
-            player: new Audio(`http://localhost:4000/listen/${item.filename}`)
+            player: new Audio(`http://localhost:5000/listen/${item.filename}`)
         };
 
         this.setState({ playing: true, song }, () => {
-            this.state.song.player.play();
-            this.state.song.player.ontimeupdate = this.updateBar;
+            let { song } = this.state;
+            song.player.play();
+            song.player.ontimeupdate = this.updateBar;
         });
     };
 
@@ -52,8 +53,8 @@ class Player extends Component {
                     <div className="play">
                         <i
                             className={classnames("audio main-button", {
-                                ["play-button"]: !playing,
-                                ["pause-button"]: playing
+                                "play-button": !playing,
+                                "pause-button": playing
                             })}
                             onClick={this.togglePlay}
                         />

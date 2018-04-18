@@ -16,7 +16,7 @@ export const fetchPlaylist = () => async dispatch => {
     try {
         dispatch(fetchingPlaylist());
 
-        fetch(`http://127.0.0.1:4000/playlist.json`)
+        fetch(`http://127.0.0.1:5000/playlist.json`)
             .then(
                 response => response.json(),
                 error => console.log("An error occurred.", error)
