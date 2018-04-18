@@ -1,6 +1,6 @@
 {
   "name": "stream-player-react",
-  "version": "1.0.0",
+  "version": "1.0.5",
   "description": "MP3 streaming server with a player in React",
   "main": "index.js",
   "scripts": {
