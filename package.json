@@ -27,6 +27,7 @@
   },
   "homepage": "",
   "dependencies": {
+    "aws-sdk": "^2.224.1",
     "classnames": "^2.2.5",
     "cors": "^2.8.4",
     "cross-fetch": "^2.1.0",

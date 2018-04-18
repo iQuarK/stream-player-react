@@ -1,6 +1,6 @@
 {
     "songs": {
-        "locationType": "local"
+        "locationType": "S3"
     },
     "server": {
         "host": "http://127.0.0.1",
