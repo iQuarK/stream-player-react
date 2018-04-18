@@ -6,10 +6,6 @@ import classnames from "classnames";
 import "./Playlist.css";
 
 class Player extends Component {
-    constructor() {
-        super();
-    }
-
     static propTypes = {
         onSelectSong: PropTypes.func,
         fetchPlaylist: PropTypes.func,
