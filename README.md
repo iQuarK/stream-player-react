@@ -5,7 +5,7 @@
 1. ~~Stream server accessing local files + basic client.~~
 2. ~~Retrieve playlist from server using Redux~~
 2. ~~Accessing Remote host.~~
-3. Broadcasting what are you listening.
+3. ~~Broadcasting what are you listening.~~
 4. Stream server seeking positions.
 5. Radio mode.
 
@@ -23,3 +23,11 @@ To load songs from an S3 bucket you must set the following environment variables
  $ export AWS_SECRET_ACCESS_KEY="Your AWS secret access key"
  $ export STREAM_BUCKET="your-bucket-name"
 ```
+## RUN THE PLAYER LOCALLY
+Once the configuration has been set up, you have to run the following commands:
+```
+ $ yarn
+ $ yarn build
+ $ yarn start-server
+```
+And then go to http://127.0.0.1:5000
