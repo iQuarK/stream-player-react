@@ -57,10 +57,16 @@ class Player extends Component {
                             })}
                             onClick={this.togglePlay}
                         />
-                        <div className="g-col">
-                            <span className="playing-title">Playing:</span>
+                        <div>
+                            <span className="playing-title">
+                                {(song &&
+                                    ((playing && "Playing") ||
+                                        (!playing && "Paused"))) ||
+                                    "Waiting"}
+                            </span>
                             <div className="song-title">
-                                {song ? `${song.title} - ${song.author}` : ""}
+                                {!song && "Click in a song to start playing..."}
+                                {song && `${song.title} - ${song.author}`}
                             </div>
                         </div>
                     </div>

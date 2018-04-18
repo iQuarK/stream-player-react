@@ -1,11 +1,13 @@
 "use strict";
 
 const express = require("express");
+var cors = require("cors");
 const app = express();
 const http = require("http").Server(app);
 const fs = require("fs");
 const config = require("./config.json");
 
+app.use(cors());
 app.use(express.static("build"));
 
 app.get("/", (req, res) => {
@@ -18,7 +20,13 @@ app.get("/listen/:filename", (req, res) => {
 
     res.writeHead(200, { "Content-Type": "audio/mpeg" });
     if (config.songs.locationType === "local") {
-        myReadStream = fs.createReadStream(__dirname + `/audios/${filename}`);
+        const path = __dirname + `/audios/${filename}`;
+        const endBytes = fs.statSync(path).size;
+        myReadStream = fs.createReadStream(path, {
+            start: 0,
+            end: endBytes - 1,
+            autoClose: true
+        });
     }
 
     myReadStream.pipe(res);

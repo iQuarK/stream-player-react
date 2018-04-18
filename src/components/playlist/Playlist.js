@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { fetchPlaylist } from "../../actions/playlist";
 import classnames from "classnames";
 import "./Playlist.css";
 
@@ -9,28 +11,18 @@ class Player extends Component {
     }
 
     static propTypes = {
-        onSelectSong: PropTypes.func
+        onSelectSong: PropTypes.func,
+        fetchPlaylist: PropTypes.func,
+        playlist: PropTypes.object
     };
 
     state = {
-        selectedSong: null
+        selectedSong: null,
+        list: []
     };
 
-    get songs() {
-        return [
-            {
-                type: "song",
-                title: "S.O.B.",
-                author: "Nathaniel Rateliff and the Night Sweats",
-                filename: "sob.mp3"
-            },
-            {
-                type: "song",
-                title: "Sunshine, lollipops and rainbows",
-                author: "Lesley Gore",
-                filename: "shunlora.mp3"
-            }
-        ];
+    componentWillMount() {
+        this.props.fetchPlaylist();
     }
 
     // blocks if the song was already selected
@@ -47,23 +39,35 @@ class Player extends Component {
 
     render() {
         const { selectedSong } = this.state;
+        const { playlist } = this.props;
 
         return (
             <div className="playlist">
-                {this.songs.map(song => (
-                    <div
-                        className={classnames("playlist-item", {
-                            active: song.title === selectedSong
-                        })}
-                        onClick={this.onSelectedSong.bind(this, song)}
-                        key={song.title}
-                    >
-                        {song.title}
-                    </div>
-                ))}
+                {playlist.fetching
+                    ? "Fetching playlist..."
+                    : playlist.list.length &&
+                      playlist.list.map(song => (
+                          <div
+                              className={classnames("playlist-item", {
+                                  active: song.title === selectedSong
+                              })}
+                              onClick={this.onSelectedSong.bind(this, song)}
+                              key={song.title}
+                          >
+                              {song.title} - {song.author}
+                          </div>
+                      ))}
             </div>
         );
     }
 }
+const mapStateToProps = state => ({
+    playlist: state.playlist
+});
+const mapDispatchToProps = dispatch => ({
+    fetchPlaylist: () => {
+        dispatch(fetchPlaylist());
+    }
+});
 
-export default Player;
+export default connect(mapStateToProps, mapDispatchToProps)(Player);
